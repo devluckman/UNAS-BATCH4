@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FilmKu</string>
-    <string name="forgot_password"><u>Forgot Password</u></string>
-    <string name="text_login">Login</string>
+    <string name="forgot_password"><u>Lupa Password</u></string>
+    <string name="text_login">Masuk</string>
     <string name="text_email">Email</string>
-    <string name="text_register">Register</string>
+    <string name="text_register">Daftar</string>
     <string name="text_please_enter_your_first_name">Please enter your first name</string>
     <string name="text_please_enter_your_last_name">Please enter your last name</string>
     <string name="please_enter_your_email">Please enter your email</string>

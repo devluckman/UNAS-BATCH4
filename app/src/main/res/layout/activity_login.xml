@@ -9,55 +9,33 @@
     tools:context=".login.LoginActivity">
 
     <TextView
+        style="@style/MerriWeather.Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:text="Login"
-        style="@style/MerriWeather.Bold"
+        android:text="@string/text_login"
         android:textSize="30sp" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/merriweather_regular"
-        android:text="Email"
-        android:textColor="#110E47"
-        android:textSize="14sp" />
-
-    <EditText
+    <com.unas.filmku.widget.CustomEditText
         android:id="@+id/edt_email"
-        android:hint="Enter your email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="4dp" />
+        app:hint_text="Email"
+        app:input_type="email"
+        app:title="Email" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/merriweather_regular"
-        android:text="Password"
-        android:textColor="#110E47"
-        android:textSize="14sp" />
-
-    <com.google.android.material.textfield.TextInputLayout
+    <com.unas.filmku.widget.CustomEditText
+        android:id="@+id/edt_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_password"
-            android:layout_width="match_parent"
-            android:hint="Enter your password"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:hint_text="Password"
+        app:input_type="password"
+        app:title="Password" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,7 +44,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/merriweather_regular"
-        android:text="Forgot password"
+        android:text="@string/forgot_password"
         android:textColor="#3C9AFB"
         android:textSize="14sp" />
 
@@ -96,10 +74,11 @@
         android:textSize="14sp" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/bg_white_stroke_grey_32_dp"
         android:gravity="center">
