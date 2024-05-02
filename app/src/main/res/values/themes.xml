@@ -1,0 +1,37 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FilmKu" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/white</item>
+    </style>
+
+    <style name="Theme.FilmKu" parent="Base.Theme.FilmKu" />
+
+
+    <style name="MerriWeather.Bold" parent="">
+        <item name="android:fontFamily">@font/merriweather_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="MerriWeather.Regular" parent="">
+        <item name="android:fontFamily">@font/merriweather_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Gabarito.Bold" parent="">
+        <item name="android:fontFamily">@font/gabarito_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Gabarito.Regular" parent="">
+        <item name="android:fontFamily">@font/gabarito_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Gabarito.SemiBold" parent="">
+        <item name="android:fontFamily">@font/gabarito_semibold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+</resources>
