@@ -58,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, MainActivity::class.java))
+                finish()
 
             }?.addOnFailureListener { data ->
                 data.printStackTrace()

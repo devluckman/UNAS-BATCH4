@@ -8,7 +8,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.unas.filmku.R
+import com.unas.filmku.home.MainActivity
 import com.unas.filmku.login.LoginActivity
 
 class LandingActivity : AppCompatActivity() {
@@ -17,8 +19,16 @@ class LandingActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_landing)
 
+        val firebaseAuth = FirebaseAuth.getInstance()
+
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
+
+            if (firebaseAuth.currentUser == null) {
+                startActivity(Intent(this, LoginActivity::class.java))
+            } else {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+
         }, 2000)
 
     }
