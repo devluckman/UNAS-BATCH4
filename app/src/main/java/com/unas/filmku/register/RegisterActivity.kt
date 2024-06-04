@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.unas.filmku.R
 import com.unas.filmku.databinding.ActivityRegisterBinding
+import com.unas.filmku.model.UserData
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -74,17 +76,32 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             if (isValid) {
-                registerToFirebase(email, password)
+                registerToFirebase(email, password, fullName)
             }
         }
     }
 
-    private fun registerToFirebase(email: String, password: String) {
+    private fun registerToFirebase(email: String, password: String, name: String) {
 
         firebaseAuth?.createUserWithEmailAndPassword(email, password)
             ?.addOnSuccessListener { auth ->
 
-                finish()
+                val uid = auth.user?.uid ?: "uid"
+                val data = UserData(
+                    email = email,
+                    name = name
+                )
+                // Implementation Write Data to FireStore
+                Firebase.firestore.collection("user")
+                    .document(uid)
+                    .set(data)
+                    .addOnSuccessListener {
+
+                        Toast.makeText(this, "Register Success", Toast.LENGTH_LONG).show()
+                        finish()
+
+                    }
+
 
             }?.addOnFailureListener { data ->
                 data.printStackTrace()
