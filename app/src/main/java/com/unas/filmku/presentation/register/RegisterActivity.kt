@@ -1,4 +1,4 @@
-package com.unas.filmku.register
+package com.unas.filmku.presentation.register
 
 import android.os.Bundle
 import android.widget.Toast

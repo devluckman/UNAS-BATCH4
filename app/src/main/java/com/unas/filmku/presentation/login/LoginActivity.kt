@@ -1,4 +1,4 @@
-package com.unas.filmku.login
+package com.unas.filmku.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.unas.filmku.R
 import com.unas.filmku.databinding.ActivityLoginBinding
-import com.unas.filmku.home.MainActivity
-import com.unas.filmku.register.RegisterActivity
+import com.unas.filmku.presentation.home.MainActivity
+import com.unas.filmku.presentation.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 

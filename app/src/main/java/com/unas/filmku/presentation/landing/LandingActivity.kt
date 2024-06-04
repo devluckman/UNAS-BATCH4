@@ -1,4 +1,4 @@
-package com.unas.filmku.landing
+package com.unas.filmku.presentation.landing
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.unas.filmku.R
-import com.unas.filmku.home.MainActivity
-import com.unas.filmku.login.LoginActivity
+import com.unas.filmku.presentation.home.MainActivity
+import com.unas.filmku.presentation.login.LoginActivity
 
 class LandingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

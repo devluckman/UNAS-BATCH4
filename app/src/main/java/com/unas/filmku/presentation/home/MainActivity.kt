@@ -1,4 +1,4 @@
-package com.unas.filmku.home
+package com.unas.filmku.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.unas.filmku.R
 import com.unas.filmku.databinding.ActivityMainBinding
-import com.unas.filmku.landing.LandingActivity
+import com.unas.filmku.presentation.landing.LandingActivity
 
 class MainActivity : AppCompatActivity() {
 

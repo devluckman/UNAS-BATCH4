@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
-    tools:context=".register.RegisterActivity">
+    tools:context=".presentation.register.RegisterActivity">
 
 
     <TextView
