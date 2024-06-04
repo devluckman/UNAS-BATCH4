@@ -6,9 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.unas.filmku.R
 import com.unas.filmku.databinding.ActivityMainBinding
+import com.unas.filmku.presentation.home.bookmark.BookmarkFragment
+import com.unas.filmku.presentation.home.home.HomeFragment
 import com.unas.filmku.presentation.landing.LandingActivity
 
 class MainActivity : AppCompatActivity() {
@@ -33,5 +36,14 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        inflateFragment(BookmarkFragment.newInstance())
+    }
+
+
+    private fun inflateFragment(fragment : Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }
