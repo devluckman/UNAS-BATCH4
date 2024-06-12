@@ -14,7 +14,9 @@ import com.unas.filmku.R
 import com.unas.filmku.databinding.ActivityLoginBinding
 import com.unas.filmku.presentation.home.MainActivity
 import com.unas.filmku.presentation.register.RegisterActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding

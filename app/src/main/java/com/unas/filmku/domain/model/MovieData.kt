@@ -1,4 +1,4 @@
-package com.unas.filmku.model
+package com.unas.filmku.domain.model
 
 data class MovieData (
     val image : String,

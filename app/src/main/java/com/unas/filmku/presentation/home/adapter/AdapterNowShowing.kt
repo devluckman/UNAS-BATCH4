@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.unas.filmku.databinding.ItemMovieNowShowingBinding
-import com.unas.filmku.model.MovieData
+import com.unas.filmku.domain.model.MovieData
 
 class AdapterNowShowing(
     private val onClickItem : (MovieData) -> Unit

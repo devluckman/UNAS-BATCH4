@@ -6,11 +6,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.unas.filmku.data.repository.RepositoryImpl
 import com.unas.filmku.presentation.home.MainActivity
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
-
-    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val firebaseAuth: FirebaseAuth
+) : ViewModel() {
 
     private val _stateEmailError = MutableLiveData<String?>(null)
     val stateEmailError : LiveData<String?> = _stateEmailError

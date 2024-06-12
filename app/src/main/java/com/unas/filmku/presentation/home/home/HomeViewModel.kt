@@ -3,7 +3,7 @@ package com.unas.filmku.presentation.home.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.unas.filmku.model.MovieData
+import com.unas.filmku.domain.model.MovieData
 
 class HomeViewModel : ViewModel() {
 

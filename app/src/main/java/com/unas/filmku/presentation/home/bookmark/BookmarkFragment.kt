@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.unas.filmku.R
 import com.unas.filmku.databinding.FragmentBookmarkBinding
 import com.unas.filmku.databinding.FragmentHomeBinding
-import com.unas.filmku.model.MovieData
+import com.unas.filmku.domain.model.MovieData
 import com.unas.filmku.presentation.home.adapter.AdapterPopular
 
 

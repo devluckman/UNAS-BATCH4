@@ -1,6 +1,6 @@
-package com.unas.filmku.request
+package com.unas.filmku.domain.request
 
-data class RequestLogin(
+data class RequestRegister(
     val firstName: String,
     val lastName: String,
     val email: String,

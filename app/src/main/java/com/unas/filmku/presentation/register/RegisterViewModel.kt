@@ -1,28 +1,27 @@
 package com.unas.filmku.presentation.register
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.unas.filmku.model.UserData
-import com.unas.filmku.request.RequestLogin
+import com.unas.filmku.domain.model.UserData
+import com.unas.filmku.domain.request.RequestRegister
 
 class RegisterViewModel : ViewModel() {
 
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     fun doRegister(
-        requestLogin: RequestLogin
+        requestRegister: RequestRegister
     ) {
         var isValid = true
 
-        val firstName = requestLogin.firstName
-        val lastName = requestLogin.lastName
-        val email: String = requestLogin.email
-        val password: String = requestLogin.password
-        val confirmPass: String = requestLogin.confirmPass
+        val firstName = requestRegister.firstName
+        val lastName = requestRegister.lastName
+        val email: String = requestRegister.email
+        val password: String = requestRegister.password
+        val confirmPass: String = requestRegister.confirmPass
 
         val fullName: String = String.format(
             "%s %s",
