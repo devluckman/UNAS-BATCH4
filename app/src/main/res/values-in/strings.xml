@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FilmKu</string>
+    <string name="app_name">FilmKu - UNAS</string>
     <string name="forgot_password"><u>Lupa Password</u></string>
     <string name="text_login">Masuk</string>
     <string name="text_email">Email</string>

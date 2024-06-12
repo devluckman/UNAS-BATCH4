@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -14,22 +16,22 @@ import com.unas.filmku.presentation.home.MainActivity
 import com.unas.filmku.presentation.login.LoginActivity
 
 class LandingActivity : AppCompatActivity() {
+
+    val viewModel: LandingViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_landing)
 
-        val firebaseAuth = FirebaseAuth.getInstance()
-
-        Handler(Looper.getMainLooper()).postDelayed({
-
-            if (firebaseAuth.currentUser == null) {
-                startActivity(Intent(this, LoginActivity::class.java))
-            } else {
-                startActivity(Intent(this, MainActivity::class.java))
+        viewModel.isLogin.observe(this) { isLogin ->
+            if (isLogin != null) {
+                if (isLogin) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                } else {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                }
             }
-
-        }, 2000)
+        }
 
     }
 }

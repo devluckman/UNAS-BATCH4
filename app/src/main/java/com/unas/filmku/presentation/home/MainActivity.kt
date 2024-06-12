@@ -36,7 +36,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        inflateFragment(BookmarkFragment.newInstance())
+        binding.btnHome.setOnClickListener {
+            inflateFragment(HomeFragment.newInstance())
+        }
+
+        binding.btnBookmark.setOnClickListener {
+            inflateFragment(BookmarkFragment.newInstance())
+        }
+
+        inflateFragment(HomeFragment.newInstance())
     }
 
 

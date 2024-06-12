@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.unas.filmku.R
 import com.unas.filmku.databinding.FragmentHomeBinding
 import com.unas.filmku.model.MovieData
@@ -17,6 +18,7 @@ class HomeFragment : Fragment() {
     private lateinit var _binding : FragmentHomeBinding
     val binding get() = _binding
 
+    val viewModel : HomeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,8 +40,16 @@ class HomeFragment : Fragment() {
         val adapterPopular = AdapterPopular(::onClickItem)
         binding.rvPopular.adapter = adapterPopular
 
-        adapter.setData(MovieData.dummy)
-        adapterPopular.setData(MovieData.dummy)
+        viewModel.movieShowing.observe(viewLifecycleOwner) {
+            adapter.setData(it)
+        }
+
+        viewModel.moviePopular.observe(viewLifecycleOwner) {
+            adapterPopular.setData(it)
+        }
+
+        viewModel.getDataMoviePopular()
+        viewModel.getDataMovieShowing()
     }
 
     private fun onClickItem(data : MovieData) {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,13 +19,12 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding
 
-    private var firebaseAuth: FirebaseAuth? = null
+    val viewModel: LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-        firebaseAuth = FirebaseAuth.getInstance()
 
         binding.btnLogin.setOnClickListener {
             doLogin()
@@ -33,38 +33,42 @@ class LoginActivity : AppCompatActivity() {
         binding.btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
+
+        viewModel.stateEmailError.observe(this) { message ->
+            if (message != null) {
+                binding.edtEmail.setError(message)
+            }
+        }
+
+        viewModel.statePasswordError.observe(this) { message ->
+            if (message != null) {
+                binding.edtPassword.setError(message)
+            }
+        }
+
+        viewModel.successLogin.observe(this) { isSuccess ->
+            if (isSuccess != null) {
+                if (isSuccess) {
+
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+
+                } else {
+                    Toast.makeText(this, "Login Gagal", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
     private fun doLogin() {
         val email = binding.edtEmail.editText?.text.toString()
         val password = binding.edtPassword.editText?.text.toString()
 
-        if (email.isBlank()) {
-            binding.edtEmail.setError("Email Tidak boleh kosong")
-        }
-
-        if (password.isBlank()) {
-            binding.edtPassword.setError("Password Tidak boleh kosong")
-        }
-
-        if (password.isNotEmpty() && email.isNotEmpty()) {
-            doLoginFirebase(email, password)
-        }
-    }
-
-    private fun doLoginFirebase(email: String, password: String) {
-        firebaseAuth?.signInWithEmailAndPassword(email, password)
-            ?.addOnSuccessListener {
-
-                Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-
-            }?.addOnFailureListener { data ->
-                data.printStackTrace()
-                Toast.makeText(this, "${data.message}", Toast.LENGTH_LONG).show()
-
-            }
+        viewModel.doLogin(
+            email = email,
+            password = password
+        )
     }
 
 }

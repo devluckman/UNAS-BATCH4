@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FilmKu</string>
+    <string name="app_name">FilmKu - UNAS</string>
     <string name="forgot_password"><u>Forgot Password</u></string>
     <string name="text_login">Login</string>
     <string name="text_email">Email</string>

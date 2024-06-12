@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.unas.filmku.R
 import com.unas.filmku.databinding.FragmentBookmarkBinding
 import com.unas.filmku.databinding.FragmentHomeBinding
@@ -17,6 +18,8 @@ class BookmarkFragment : Fragment() {
 
     private lateinit var _binding : FragmentBookmarkBinding
     val binding get() = _binding
+
+    val viewModel : BookmarkVM by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +36,11 @@ class BookmarkFragment : Fragment() {
         val adapterPopular = AdapterPopular(::onClickItem)
         binding.rvBookmark.adapter = adapterPopular
 
-        adapterPopular.setData(MovieData.dummy)
+        viewModel.movieBookmark.observe(viewLifecycleOwner) {
+            adapterPopular.setData(it)
+        }
+
+        viewModel.getMovieBookmark()
     }
 
     private fun onClickItem(data : MovieData) {
