@@ -1,18 +1,20 @@
 package com.unas.filmku.domain.repository
 
+import com.unas.filmku.domain.model.MovieData
 import com.unas.filmku.domain.request.RequestRegister
+import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
     val isLogin : Boolean
 
-    fun postLogin(email : String, password : String)
+    fun postLogin(email : String, password : String, callback:(Boolean)->Unit)
 
-    fun postRegister(requestRegister: RequestRegister)
+    fun postRegister(requestRegister: RequestRegister, callback:(Boolean)->Unit)
 
-    fun getMovieShowing()
+    fun getMovieShowing() : Flow<List<MovieData>>
 
-    fun getMoviePopular()
+    fun getMoviePopular() : Flow<List<MovieData>>
 
 
 }

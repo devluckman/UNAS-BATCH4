@@ -6,10 +6,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.unas.filmku.domain.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LandingViewModel : ViewModel() {
-
-    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+@HiltViewModel
+class LandingViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
 
     private val _isLogin = MutableLiveData<Boolean?>(null)
     val isLogin : LiveData<Boolean?> = _isLogin
@@ -17,7 +21,7 @@ class LandingViewModel : ViewModel() {
     private fun checkLogin() {
         Handler(Looper.getMainLooper()).postDelayed({
 
-            _isLogin.value = firebaseAuth.currentUser != null
+            _isLogin.value = repository.isLogin
 
         }, 2000)
     }

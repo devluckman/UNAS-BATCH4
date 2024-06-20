@@ -3,6 +3,7 @@ package com.unas.filmku.presentation.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.unas.filmku.databinding.ItemMovieNowShowingBinding
 import com.unas.filmku.databinding.ItemMoviePopularBinding
 import com.unas.filmku.domain.model.MovieData
@@ -21,6 +22,9 @@ class AdapterPopular(
             binding.apply {
                 tvTitle.text = data.title
                 tvRating.text = data.rating
+                Glide.with(itemView.context)
+                    .load(data.image)
+                    .into(ivPoster)
             }
         }
 

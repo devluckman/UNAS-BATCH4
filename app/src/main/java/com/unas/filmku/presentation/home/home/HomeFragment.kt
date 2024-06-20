@@ -1,18 +1,19 @@
 package com.unas.filmku.presentation.home.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.unas.filmku.R
 import com.unas.filmku.databinding.FragmentHomeBinding
 import com.unas.filmku.domain.model.MovieData
 import com.unas.filmku.presentation.home.adapter.AdapterNowShowing
 import com.unas.filmku.presentation.home.adapter.AdapterPopular
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var _binding : FragmentHomeBinding
@@ -48,6 +49,15 @@ class HomeFragment : Fragment() {
             adapterPopular.setData(it)
         }
 
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+            fetchData()
+        }
+
+        fetchData()
+    }
+
+    private fun fetchData() {
         viewModel.getDataMoviePopular()
         viewModel.getDataMovieShowing()
     }

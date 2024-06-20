@@ -7,11 +7,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.unas.filmku.domain.model.UserData
+import com.unas.filmku.domain.repository.Repository
 import com.unas.filmku.domain.request.RequestRegister
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class RegisterViewModel : ViewModel() {
+@HiltViewModel
+class RegisterViewModel @Inject constructor(
+    private val  repository: Repository
+) : ViewModel() {
 
-    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     fun doRegister(
         requestRegister: RequestRegister
     ) {
@@ -60,7 +65,7 @@ class RegisterViewModel : ViewModel() {
         }
 
         if (isValid) {
-            registerToFirebase(email, password, fullName)
+            registerToFirebase(requestRegister)
         }
     }
 
@@ -68,32 +73,9 @@ class RegisterViewModel : ViewModel() {
     private val _successRegister = MutableLiveData<Boolean?>(null)
     val successRegister : LiveData<Boolean?> = _successRegister
 
-
-    private fun registerToFirebase(email: String, password: String, fullName: String) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-            .addOnSuccessListener { auth ->
-                // Action after register success
-                // Save data user to Firestore
-
-                val uid = auth.user?.uid ?: "uid"
-                val data = UserData(
-                    email = email,
-                    name = fullName
-                )
-                // Implementation Write Data to FireStore
-                Firebase.firestore.collection("user")
-                    .document(uid)
-                    .set(data)
-                    .addOnSuccessListener {
-
-                        // Action Register and Save Data Success
-                        _successRegister.value = true
-                    }
-
-
-            }.addOnFailureListener { data ->
-                data.printStackTrace()
-                _successRegister.value = false
-            }
+    private fun registerToFirebase(requestRegister: RequestRegister) {
+        repository.postRegister(requestRegister) {
+            _successRegister.value = it
+        }
     }
 }

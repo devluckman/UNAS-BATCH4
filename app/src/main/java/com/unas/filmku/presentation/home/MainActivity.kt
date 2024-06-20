@@ -13,7 +13,9 @@ import com.unas.filmku.databinding.ActivityMainBinding
 import com.unas.filmku.presentation.home.bookmark.BookmarkFragment
 import com.unas.filmku.presentation.home.home.HomeFragment
 import com.unas.filmku.presentation.landing.LandingActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding

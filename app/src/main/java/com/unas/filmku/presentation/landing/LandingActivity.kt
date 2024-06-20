@@ -14,7 +14,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.unas.filmku.R
 import com.unas.filmku.presentation.home.MainActivity
 import com.unas.filmku.presentation.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LandingActivity : AppCompatActivity() {
 
     val viewModel: LandingViewModel by viewModels()

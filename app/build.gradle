@@ -7,6 +7,9 @@ plugins {
     id 'com.google.dagger.hilt.android'
 }
 
+def properties = new Properties()
+properties.load(new FileInputStream(rootProject.file(("local.properties"))))
+
 android {
     namespace 'com.unas.filmku'
     compileSdk 34
@@ -18,7 +21,11 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField("String", "BASE_URL", "${properties["base_url"]}")
+        buildConfigField("String", "TOKEN", "${properties["token"]}")
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -60,6 +67,14 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:2.48"
     kapt "com.google.dagger:hilt-compiler:2.48"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
