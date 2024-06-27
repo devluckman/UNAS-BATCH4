@@ -1,5 +1,6 @@
 package com.unas.filmku.presentation.home.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.unas.filmku.databinding.FragmentHomeBinding
 import com.unas.filmku.domain.model.MovieData
+import com.unas.filmku.presentation.detail.DetailActivity
 import com.unas.filmku.presentation.home.adapter.AdapterNowShowing
 import com.unas.filmku.presentation.home.adapter.AdapterPopular
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,8 +66,8 @@ class HomeFragment : Fragment() {
 
     private fun onClickItem(data : MovieData) {
         Toast.makeText(context, "Movies ${data.title}", Toast.LENGTH_LONG).show()
-        // TODO Action to Page Detail
 
+        startActivity(Intent(context, DetailActivity::class.java))
     }
 
     companion object {

@@ -1,11 +1,11 @@
 package com.unas.filmku.data.remote
 
-import com.unas.filmku.BuildConfig
+import com.unas.filmku.data.response.DataDetailResponse
 import com.unas.filmku.data.response.NowPlayingResponse
 import com.unas.filmku.data.response.PopularResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.Headers
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -21,5 +21,10 @@ interface ApiService {
     ) : PopularResponse
 
 
+    @GET("3/movie/{movie_id}")
+    suspend fun getDetailMovie(
+        @Header("Authorization") token : String,
+        @Path("movie_id") movieId : Int
+    ) : DataDetailResponse
 
 }

@@ -9,6 +9,7 @@ import com.google.type.Expr
 import com.unas.filmku.BuildConfig
 import com.unas.filmku.data.mapper.Mapper
 import com.unas.filmku.data.remote.ApiService
+import com.unas.filmku.domain.model.DetailMovieDomain
 import com.unas.filmku.domain.model.MovieData
 import com.unas.filmku.domain.model.UserData
 import com.unas.filmku.domain.repository.Repository
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.flow
 class RepositoryImpl(
     private val api : ApiService,
     private val firebaseAuth: FirebaseAuth,
+
 ) : Repository {
 
     override val isLogin: Boolean
@@ -89,6 +91,19 @@ class RepositoryImpl(
             e.printStackTrace()
 
             emit(emptyList())
+        }
+    }
+
+    override fun getMovieDetail(id: Int): Flow<DetailMovieDomain> = flow {
+        try {
+            val token = BuildConfig.TOKEN
+
+            val data = api.getDetailMovie(token = "Bearer $token", movieId = id)
+
+            emit(Mapper.mappingMovieDetail(data))
+
+        } catch (e : Exception) {
+            e.printStackTrace()
         }
     }
 

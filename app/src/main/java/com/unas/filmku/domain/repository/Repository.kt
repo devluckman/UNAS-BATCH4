@@ -1,5 +1,6 @@
 package com.unas.filmku.domain.repository
 
+import com.unas.filmku.domain.model.DetailMovieDomain
 import com.unas.filmku.domain.model.MovieData
 import com.unas.filmku.domain.request.RequestRegister
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +16,8 @@ interface Repository {
     fun getMovieShowing() : Flow<List<MovieData>>
 
     fun getMoviePopular() : Flow<List<MovieData>>
+
+    fun getMovieDetail(id : Int) : Flow<DetailMovieDomain>
 
 
 }
