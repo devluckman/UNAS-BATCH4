@@ -65,9 +65,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onClickItem(data : MovieData) {
-        Toast.makeText(context, "Movies ${data.title}", Toast.LENGTH_LONG).show()
-
-        startActivity(Intent(context, DetailActivity::class.java))
+        DetailActivity.newInstance(context, data.id)
     }
 
     companion object {

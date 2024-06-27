@@ -1,6 +1,7 @@
 package com.unas.filmku.presentation.home.bookmark
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,10 @@ import com.unas.filmku.databinding.FragmentBookmarkBinding
 import com.unas.filmku.databinding.FragmentHomeBinding
 import com.unas.filmku.domain.model.MovieData
 import com.unas.filmku.presentation.home.adapter.AdapterPopular
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class BookmarkFragment : Fragment() {
 
     private lateinit var _binding : FragmentBookmarkBinding
@@ -37,6 +40,7 @@ class BookmarkFragment : Fragment() {
         binding.rvBookmark.adapter = adapterPopular
 
         viewModel.movieBookmark.observe(viewLifecycleOwner) {
+            Log.d("DATABOOKMARK", "CEK DATA $it")
             adapterPopular.setData(it)
         }
 

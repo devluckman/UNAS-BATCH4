@@ -1,12 +1,10 @@
 package com.unas.filmku.data.repository
 
-import android.os.Build
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.type.Expr
 import com.unas.filmku.BuildConfig
+import com.unas.filmku.data.database.dao.MovieDao
 import com.unas.filmku.data.mapper.Mapper
 import com.unas.filmku.data.remote.ApiService
 import com.unas.filmku.domain.model.DetailMovieDomain
@@ -18,9 +16,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class RepositoryImpl(
-    private val api : ApiService,
-    private val firebaseAuth: FirebaseAuth,
-
+    private val api: ApiService, // DATA API
+    private val firebaseAuth: FirebaseAuth, // DATA Firebase
+    private val database: MovieDao // DATABASE
 ) : Repository {
 
     override val isLogin: Boolean
@@ -72,7 +70,7 @@ class RepositoryImpl(
 
             emit(Mapper.mappingMovieShowing(data))
 
-        } catch (e : Exception) {
+        } catch (e: Exception) {
 
             e.printStackTrace()
             emit(emptyList())
@@ -87,7 +85,7 @@ class RepositoryImpl(
             val data = api.getPopularMovie(token = "Bearer $token")
 
             emit(Mapper.mappingMoviePopular(data))
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
 
             emit(emptyList())
@@ -102,9 +100,29 @@ class RepositoryImpl(
 
             emit(Mapper.mappingMovieDetail(data))
 
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun getAllMovieBookmark(): Flow<List<MovieData>> = flow {
+
+        val data = database.getAllMovieBookmark()
+
+        emit(Mapper.mappingEntityToDomain(data))
+    }
+
+    override fun addMovieToDatabase(data: DetailMovieDomain): Flow<Boolean> = flow {
+        try {
+            val entity = Mapper.mappingMovieDomainToEntity(data)
+            database.addMovieToBookmark(entity) // Fungsi Insert
+
+            emit(true)
+        } catch (e: Exception) {
+            emit(false)
+            e.printStackTrace()
+        }
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.unas.filmku.data.mapper
 
+import com.unas.filmku.data.database.entity.EntityMovie
 import com.unas.filmku.data.response.DataDetailResponse
 import com.unas.filmku.data.response.NowPlayingResponse
 import com.unas.filmku.data.response.PopularResponse
@@ -15,7 +16,8 @@ object Mapper {
             MovieData(
                 image = baseUrlImage + it?.posterPath.orEmpty(),
                 title = it?.title.orEmpty(),
-                rating = it?.voteAverage.toString()
+                rating = it?.voteAverage.toString(),
+                id = it?.id ?: 0
             )
         } ?: emptyList()
     }
@@ -25,7 +27,8 @@ object Mapper {
             MovieData(
                 image = baseUrlImage + it?.posterPath.orEmpty(),
                 title = it?.title.orEmpty(),
-                rating = it?.voteAverage.toString()
+                rating = it?.voteAverage.toString(),
+                id = it?.id ?: 0
             )
         } ?: emptyList()
     }
@@ -42,4 +45,27 @@ object Mapper {
         )
     }
 
+
+    fun mappingEntityToDomain(data : List<EntityMovie>) : List<MovieData> {
+        return data.map {
+            MovieData(
+                image = it.image,
+                title = it.title,
+                rating = it.rating,
+                id = it.id
+            )
+        }
+    }
+
+    fun mappingMovieDomainToEntity(data : DetailMovieDomain) : EntityMovie {
+        return EntityMovie(
+            id = data.id,
+            image = baseUrlImage + data.image,
+            title = data.title,
+            rating = data.rating,
+            duration = data.duration,
+            description = data.description,
+            genres = data.genres.toString(),
+        )
+    }
 }

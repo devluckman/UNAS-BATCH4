@@ -19,5 +19,8 @@ interface Repository {
 
     fun getMovieDetail(id : Int) : Flow<DetailMovieDomain>
 
+    fun getAllMovieBookmark() : Flow<List<MovieData>>
+
+    fun addMovieToDatabase(data : DetailMovieDomain) : Flow<Boolean>
 
 }
